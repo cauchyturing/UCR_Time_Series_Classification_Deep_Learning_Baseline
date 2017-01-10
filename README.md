@@ -42,6 +42,8 @@ work for the setting of classification.
 ## Classification Results
 This table provides the testing (not training) classification error rate on 85 UCR time series data sets. For more experimental settings please refer to our paper. 
 
+Please note that the 'best' row is not a reasonable peformance measure. The MAP score is TODO.
+
 |                                |       |        |       |       |         |          |         |       | 
 |--------------------------------|-------|--------|-------|-------|---------|----------|---------|-------| 
 |       | **MLP**                            | **FCN**   | **ResNet** | **PROP**  | **COTE**  | **1NN-DTW** | **1NN-BOSS** | **BOSS-VS**|
@@ -131,6 +133,9 @@ This table provides the testing (not training) classification error rate on 85 U
 | WormsTwoClass                  | 0.403 | 0.271  | 0.265 | /     | /       | 0.337    | 0.243   | 0.315 | 
 | yoga                           | 0.145 | 0.155  | 0.142 | 0.121 | 0.113   | 0.164    | 0.081   | 0.169 | 
 | Best | 6 | 27 | 21 | 14 | 10 | 4 | 21 | 9 | 
+
+## Dependencies
+Keras (Tensorflow backend), Numpy.
 
 ## Cite
 If you find either the codes or the results are helpful to your work, please kindly cite our paper 
