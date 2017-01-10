@@ -39,6 +39,14 @@ by the convolutional networks. CAM also provide a way to
 find a possible explanation on how the convolutional networks
 work for the setting of classification.
 
+## Visualize the Filter/Weights 
+We adopt the Gramian Angular Summation Field (GASF)
+[[8]](https://arxiv.org/abs/1506.00327) to visualize the filters/weights in the neural networks. The weights from the second and the
+last layer in MLP are very similar with clear structures and
+very little degradation occurring. The weights in the first layer,
+generally, have the higher values than the following layers.
+![Feature] (https://www.dropbox.com/s/mbfgho9ked7to7b/Feature.jpg?dl=1)
+
 ## Classification Results
 This table provides the testing (not training) classification error rate on 85 UCR time series data sets. For more experimental settings please refer to our paper. 
 
@@ -142,6 +150,8 @@ If you find either the codes or the results are helpful to your work, please kin
 
 [**Time Series Classification from Scratch with Deep
 Neural Networks: A Strong Baseline**] (https://arxiv.org/abs/1611.06455)
+
+[**Imaging Time-Series to Improve Classification and Imputation**] (https://arxiv.org/abs/1506.00327)
 
 ## License
 This project is licensed under the MIT License.
