@@ -19,6 +19,26 @@ This repository contains three deep neural networks models (MLP, FCN and ResNet)
 ![Network Structure] (https://www.dropbox.com/s/8p3lqw2oyb2z8yq/Archi.jpg?dl=1)
 Three deep neural network architectures are exploited to provide a fully comprehensive baseline.
 
+## Localize the Contributing Region with Class Activation Map 
+Another benefit of FCN and ResNet with the global average pooling
+layer is its natural extension, the class activation map (CAM)
+to interpret the class-specific region in the data [[7]](https://arxiv.org/abs/1512.04150).
+![CAM] (https://www.dropbox.com/s/wukxda6cabjvapj/CAM.jpg?dl=1)
+
+We can see that the discriminative
+regions of the time series for the right classes are highlighted.
+We also highlight the differences in the CAMs for the different
+labels. The contributing regions for different categories are
+different. The CAM provides a natural way to find out the contributing
+region in the raw data for the specific labels. This enables
+classification-trained convolutional networks to learn to localize
+without any extra effort. Class activation maps also allow
+us to visualize the predicted class scores on any given time
+series, highlighting the discriminative subsequences detected
+by the convolutional networks. CAM also provide a way to
+find a possible explanation on how the convolutional networks
+work for the setting of classification.
+
 ## Classification Results
 This table provides the testing (not training) classification error rate on 85 UCR time series data sets. For more experimental settings please refer to our paper. 
 
