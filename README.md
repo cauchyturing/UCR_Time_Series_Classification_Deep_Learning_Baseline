@@ -42,7 +42,7 @@ work for the setting of classification.
 ## Classification Results
 This table provides the testing (not training) classification error rate on 85 UCR time series data sets. For more experimental settings please refer to our paper. 
 
-Please note that the 'best' row is not a reasonable peformance measure. The MAP score is TODO.
+Please note that the 'best' row is not a reasonable peformance measure. The MPCE score is TODO.
 
 |                                |       |        |       |       |         |          |         |       | 
 |--------------------------------|-------|--------|-------|-------|---------|----------|---------|-------| 
