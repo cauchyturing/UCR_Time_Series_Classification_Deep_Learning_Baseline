@@ -81,6 +81,8 @@ for each in flist:
               verbose=1, validation_data=(x_test, Y_test), 
                 #callbacks = [TestCallback((x_train, Y_train)), reduce_lr, keras.callbacks.TensorBoard(log_dir='./log'+fname, histogram_freq=1)])
                  callbacks=[reduce_lr])
+    
+    #Print the testing results which has the lowest training loss.
     log = pd.DataFrame(hist.history)
     print (log.iloc[:,3].max())
 
