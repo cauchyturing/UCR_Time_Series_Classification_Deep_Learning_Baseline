@@ -84,7 +84,7 @@ for each in flist:
     
     #Print the testing results which has the lowest training loss.
     log = pd.DataFrame(hist.history)
-    print (log.iloc[:,3].max())
+    print log.loc[log[‘loss'].idxmin]['loss’], log.loc[log[‘loss'].idxmin][‘val_acc’]
 
  
 
