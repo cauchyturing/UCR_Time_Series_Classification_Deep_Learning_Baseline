@@ -84,5 +84,6 @@ for each in flist:
                       patience=50, min_lr=0.0001) 
     hist = model.fit(x_train, Y_train, batch_size=batch_size, nb_epoch=nb_epochs,
               verbose=1, validation_data=(x_test, Y_test), callbacks = [reduce_lr])
+    #Print the testing results which has the lowest training loss.
     log = pd.DataFrame(hist.history)
     print (log.iloc[:,3].max())
