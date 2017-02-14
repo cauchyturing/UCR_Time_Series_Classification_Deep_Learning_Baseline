@@ -151,4 +151,4 @@ for each in flist:
     hist = model.fit(x_train, Y_train, batch_size=batch_size, nb_epoch=nb_epochs,
               verbose=1, validation_data=(x_test, Y_test), callbacks = [reduce_lr])
 	log = pd.DataFrame(hist.history)
-    print (log.iloc[:,3].max())
+    print log.loc[log[‘loss'].idxmin]['loss’], log.loc[log[‘loss'].idxmin][‘val_acc’]
