@@ -74,7 +74,7 @@ for each in flist:
                   optimizer=optimizer,
                   metrics=['accuracy'])
      
-    reduce_lr = ReduceLROnPlateau(monitor = 'loss', factor=0.5,
+    reduce_lr = ReduceLROnPlateau(monitor = 'train_loss', factor=0.5,
                       patience=200, min_lr=0.1)
     
     hist = model.fit(x_train, Y_train, batch_size=batch_size, nb_epoch=nb_epochs,
