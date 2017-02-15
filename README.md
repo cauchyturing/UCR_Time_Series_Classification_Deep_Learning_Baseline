@@ -13,7 +13,7 @@ the model complicated to deploy.
 
 This repository contains three deep neural networks models (MLP, FCN and ResNet) for the pure end-to-end and interpretable time series analytics. These models provide a good baseline for both application for real-world data and future research in deep learning on time series.
 
-## Before start
+## Before Start
 What is the best approach to classfiy time series? Very hard to say. From the experiments we did, COTE, BOSS are among the best and DL-based appraoch (FCN, ResNet or MCNN) show no significant difference with them. If you prefer white box model, try BOSS first. If you like end-to-end solution, use FCN or even MLP with dropout as your fisrt baseline (FCN also support a certain level of model interpretability as from CAM or grad-CAM). 
 
 However, the UCR time series is kind of the 'extremely ideal data'. In a more applicable scenario, highly skewed labels with very non-stationary dynamics and frequent distribution/concept drift occur everywhere. Hopefully we can address these more complex issue with a very neat and effective DL based framework to enable end-2-end solution with good model interpretability , and yeah, we are exactly working on it.   
