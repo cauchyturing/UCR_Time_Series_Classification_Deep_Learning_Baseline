@@ -19,14 +19,14 @@ What is the best approach to classfiy time series? Very hard to say. From the ex
 However, the UCR time series is kind of the 'extremely ideal data'. In a more applicable scenario, highly skewed labels with very non-stationary dynamics and frequent distribution/concept drift occur everywhere. Hopefully we can address these more complex issue with a very neat and effective DL based framework to enable end-2-end solution with good model interpretability , and yeah, we are exactly working on it.   
 
 ## Network Structure
-![Network Structure] (Archi.jpg)
+![Network Structure](Archi.jpg)
 Three deep neural network architectures are exploited to provide a fully comprehensive baseline.
 
 ## Localize the Contributing Region with Class Activation Map 
 Another benefit of FCN and ResNet with the global average pooling
 layer is its natural extension, the class activation map (CAM)
 to interpret the class-specific region in the data [[7]](https://arxiv.org/abs/1512.04150).
-![CAM] (CAM.jpg)
+![CAM](CAM.jpg)
 
 We can see that the discriminative
 regions of the time series for the right classes are highlighted.
