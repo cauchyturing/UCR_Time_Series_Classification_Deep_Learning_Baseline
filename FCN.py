@@ -14,6 +14,7 @@ import numpy as np
 
 import keras 
 from keras.callbacks import ReduceLROnPlateau
+import pandas as pd
       
 def readucr(filename):
     data = np.loadtxt(filename, delimiter = ',')
