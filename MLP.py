@@ -83,5 +83,3 @@ for each in flist:
     log = pd.DataFrame(hist.history)
     print(log.loc[log['loss'].idxmin]['loss'], log.loc[log['loss'].idxmin]['val_acc'])
 
- 
-

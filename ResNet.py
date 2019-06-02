@@ -101,7 +101,7 @@ def readucr(filename):
     X = data[:,1:]
     return X, Y
    
-nb_epochs = 1000
+nb_epochs = 1500
  
  
 #flist = ['Adiac', 'Beef', 'CBF', 'ChlorineConcentration', 'CinC_ECG_torso', 'Coffee', 'Cricket_X', 'Cricket_Y', 'Cricket_Z', 
