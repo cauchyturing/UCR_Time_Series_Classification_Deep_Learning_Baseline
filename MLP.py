@@ -8,13 +8,10 @@ Created on Fri Oct 28 21:46:23 2016
  
 from __future__ import print_function
  
-from keras.models import Model
-from keras.layers import Input, Dense, Dropout
-from keras.utils import np_utils
+from tensorflow import keras
 import numpy as np
-import keras 
-from keras.callbacks import ReduceLROnPlateau
 import pandas as pd
+
 np.random.seed(813306)
 
       
@@ -43,8 +40,8 @@ for each in flist:
     y_test = (y_test - y_test.min())/(y_test.max()-y_test.min())*(nb_classes-1)
     batch_size = min(x_train.shape[0]/10, 16)
     
-    Y_train = np_utils.to_categorical(y_train, nb_classes)
-    Y_test = np_utils.to_categorical(y_test, nb_classes)
+    Y_train = keras.utils.to_categorical(y_train, nb_classes)
+    Y_test = keras.utils.to_categorical(y_test, nb_classes)
      
     x_train_mean = x_train.mean()
     x_train_std = x_train.std()
@@ -57,24 +54,24 @@ for each in flist:
     #x_train = x_train.reshape(x_train.shape + (1,))
     #x_test = x_test.reshape(x_test.shape + (1,))
     
-    x = Input(x_train.shape[1:])
-    y= Dropout(0.1)(x)
-    y = Dense(500, activation='relu')(x)
-    y = Dropout(0.2)(y)
-    y = Dense(500, activation='relu')(y)
-    y = Dropout(0.2)(y)
-    y = Dense(500, activation = 'relu')(y)
-    y = Dropout(0.3)(y)
-    out = Dense(nb_classes, activation='softmax')(y)
+    x = keras.layers.Input(x_train.shape[1:])
+    y= keras.layers.Dropout(0.1)(x)
+    y = keras.layers.Dense(500, activation='relu')(x)
+    y = keras.layers.Dropout(0.2)(y)
+    y = keras.layers.Dense(500, activation='relu')(y)
+    y = keras.layers.Dropout(0.2)(y)
+    y = keras.layers.Dense(500, activation = 'relu')(y)
+    y = keras.layers.Dropout(0.3)(y)
+    out = keras.layers.Dense(nb_classes, activation='softmax')(y)
      
-    model = Model(input=x, output=out)
+    model = keras.models.Model(inputs=x, outputs=out)
      
     optimizer = keras.optimizers.Adadelta()    
     model.compile(loss='categorical_crossentropy',
                   optimizer=optimizer,
                   metrics=['accuracy'])
      
-    reduce_lr = ReduceLROnPlateau(monitor = 'loss', factor=0.5,
+    reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor = 'loss', factor=0.5,
                       patience=200, min_lr=0.1)
     
     hist = model.fit(x_train, Y_train, batch_size=batch_size, nb_epoch=nb_epochs,
@@ -84,7 +81,7 @@ for each in flist:
     
     #Print the testing results which has the lowest training loss.
     log = pd.DataFrame(hist.history)
-    print log.loc[log[‘loss'].idxmin]['loss’], log.loc[log[‘loss'].idxmin][‘val_acc’]
+    print(log.loc[log['loss'].idxmin]['loss'], log.loc[log['loss'].idxmin]['val_acc'])
 
  
 
