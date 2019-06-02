@@ -8,13 +8,10 @@ Created on Sun Oct 30 20:11:19 2016
  
 from __future__ import print_function
  
-from keras.models import Model
-from keras.utils import np_utils
+from tensorflow import keras
 import numpy as np
+import pandas as pd
 
-import keras 
-from keras.callbacks import ReduceLROnPlateau
-      
 def readucr(filename):
     data = np.loadtxt(filename, delimiter = ',')
     Y = data[:,0]
@@ -42,8 +39,8 @@ for each in flist:
     y_test = (y_test - y_test.min())/(y_test.max()-y_test.min())*(nb_classes-1)
     
     
-    Y_train = np_utils.to_categorical(y_train, nb_classes)
-    Y_test = np_utils.to_categorical(y_test, nb_classes)
+    Y_train = keras.utils.to_categorical(y_train, nb_classes)
+    Y_test = keras.utils.to_categorical(y_test, nb_classes)
     
     x_train_mean = x_train.mean()
     x_train_std = x_train.std()
@@ -55,35 +52,35 @@ for each in flist:
 
     x = keras.layers.Input(x_train.shape[1:])
 #    drop_out = Dropout(0.2)(x)
-    conv1 = keras.layers.Conv2D(128, 8, 1, border_mode='same')(x)
-    conv1 = keras.layers.normalization.BatchNormalization()(conv1)
+    conv1 = keras.layers.Conv2D(128, 8, 1, padding='same')(x)
+    conv1 = keras.layers.BatchNormalization()(conv1)
     conv1 = keras.layers.Activation('relu')(conv1)
     
 #    drop_out = Dropout(0.2)(conv1)
-    conv2 = keras.layers.Conv2D(256, 5, 1, border_mode='same')(conv1)
-    conv2 = keras.layers.normalization.BatchNormalization()(conv2)
+    conv2 = keras.layers.Conv2D(256, 5, 1, padding='same')(conv1)
+    conv2 = keras.layers.BatchNormalization()(conv2)
     conv2 = keras.layers.Activation('relu')(conv2)
     
 #    drop_out = Dropout(0.2)(conv2)
-    conv3 = keras.layers.Conv2D(128, 3, 1, border_mode='same')(conv2)
-    conv3 = keras.layers.normalization.BatchNormalization()(conv3)
+    conv3 = keras.layers.Conv2D(128, 3, 1, padding='same')(conv2)
+    conv3 = keras.layers.BatchNormalization()(conv3)
     conv3 = keras.layers.Activation('relu')(conv3)
     
-    full = keras.layers.pooling.GlobalAveragePooling2D()(conv3)    
+    full = keras.layers.GlobalAveragePooling2D()(conv3)
     out = keras.layers.Dense(nb_classes, activation='softmax')(full)
     
     
-    model = Model(input=x, output=out)
+    model = keras.models.Model(inputs=x, outputs=out)
      
     optimizer = keras.optimizers.Adam()
     model.compile(loss='categorical_crossentropy',
                   optimizer=optimizer,
                   metrics=['accuracy'])
      
-    reduce_lr = ReduceLROnPlateau(monitor = 'loss', factor=0.5,
+    reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor = 'loss', factor=0.5,
                       patience=50, min_lr=0.0001) 
     hist = model.fit(x_train, Y_train, batch_size=batch_size, nb_epoch=nb_epochs,
               verbose=1, validation_data=(x_test, Y_test), callbacks = [reduce_lr])
     #Print the testing results which has the lowest training loss.
     log = pd.DataFrame(hist.history)
-    print log.loc[log[‘loss'].idxmin]['loss’], log.loc[log[‘loss'].idxmin][‘val_acc’]
+    print(log.loc[log['loss'].idxmin]['loss'], log.loc[log['loss'].idxmin]['val_acc'])
