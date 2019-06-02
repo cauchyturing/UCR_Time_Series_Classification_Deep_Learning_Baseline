@@ -86,7 +86,7 @@ for each in flist:
     print(log.loc[log['loss'].idxmin]['loss'], log.loc[log['loss'].idxmin]['val_acc'])
 
 
-# %% Get CAM
+############## Get CAM ################
 import matplotlib.pyplot as plt
 # from matplotlib.backends.backend_pdf import PdfPages
 
