@@ -56,7 +56,7 @@ for each in flist:
     
     x = keras.layers.Input(x_train.shape[1:])
     y= keras.layers.Dropout(0.1)(x)
-    y = keras.layers.Dense(500, activation='relu')(x)
+    y = keras.layers.Dense(500, activation='relu')(y)
     y = keras.layers.Dropout(0.2)(y)
     y = keras.layers.Dense(500, activation='relu')(y)
     y = keras.layers.Dropout(0.2)(y)
